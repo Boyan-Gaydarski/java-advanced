@@ -1,6 +1,7 @@
 package AdvIteratorsAndComparatorsVarArgsBook;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -14,8 +15,16 @@ public class Main {
         books.add(bookTwo);
         books.add(bookThree);
 
-        System.out.println(bookOne.getAuthors());
-        System.out.println(bookTwo.getAuthors());
-        System.out.println(bookThree.getAuthors());
+        Library library = new Library(bookOne, bookTwo, bookThree);
+
+        for (Book book : library) {
+            System.out.println(book.getTitle());
+        }
+
+        Collections.sort(books);
+
+        books.stream()
+                .sorted(new BookComparator())
+                .forEach(System.out::println);
     }
 }

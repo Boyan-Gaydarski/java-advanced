@@ -1,10 +1,9 @@
 package AdvIteratorsAndComparatorsVarArgsBook;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Book {
+public class Book implements Comparable<Book> {
 
     private String title;
     private int year;
@@ -38,5 +37,24 @@ public class Book {
 
     public List<String> getAuthors() {
         return this.authors;
+    }
+
+    @Override
+    public int compareTo(Book other) {
+        int compareResult
+                = this.getTitle().compareTo(other.getTitle());
+        if (compareResult == 0) {
+            compareResult = Integer.compare(this.year, other.year);
+        }
+        return compareResult;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", year=" + year +
+                ", authors=" + authors.size() +
+                '}';
     }
 }
